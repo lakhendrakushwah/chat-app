@@ -41,8 +41,9 @@ app.post('/messages', (req, res) => {
 
     })
 })
+const Port = process.env.PORT || 3000 ;
 
-server.listen(3000, () => {
+server.listen(Port, () => {
     console.log('listening on *:3000');
   });
 
