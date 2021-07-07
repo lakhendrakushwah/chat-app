@@ -41,6 +41,16 @@ app.post('/messages', (req, res) => {
 
     })
 })
+app.post('/delete',(req,res) =>{
+    Message.collection.remove({} ,(err) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect('/');
+        }
+    } );
+})
 const PORT = process.env.PORT || 3000 ;
 
 server.listen(PORT, () => {
