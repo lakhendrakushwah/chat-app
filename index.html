@@ -61,7 +61,7 @@
     function getMessages() {
         console.log('getmesseges');
 
-        $.get('http://localhost:3000/messages', (data) => {
+        $.get('/messages', (data) => {
             data.forEach(addMessages);
         })
     }
@@ -69,7 +69,7 @@
     function sendMessage(message) {
         console.log('SendMSG');
 
-        $.post('http://localhost:3000/messages', message)
+        $.post('/messages', message)
     }
     console.log('hello');
 </script>
