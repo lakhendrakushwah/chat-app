@@ -22,12 +22,14 @@
             <form action="/delete" method="POST">
                 <button type="submit">Clear All</button>
             </form>
-            <br> 
-            <input id="name" class="form-control" placeholder="Name">
-            <br>
-            <input id="message" class="form-control" placeholder="Your Message Here"></input>
-            <br>
-            <button id="send" class="btn btn-success">Send</button>
+                <br>
+                <input id="name" class="form-control" placeholder="Name">
+                <br>
+                <fieldset id="LinkList">
+                    <input id="message" class="form-control" placeholder="Your Message Here"></input>
+                </fieldset>
+                <br>
+                <button id="send" class="btn btn-success">Send</button>
         </div>
         <div id="messages">
 
@@ -35,11 +37,19 @@
 </body>
 <script src="/socket.io/socket.io.js"></script>
 <script>
-  var socket = io();
+    var socket = io();
 </script>
-<script>
 
+
+
+
+<script>
+    var input = document.getElementById("message");
     $(() => {
+        clickbtn()
+        getMessages()
+    })
+    function clickbtn() {
         $("#send").click(() => {
             console.log('send click');
             sendMessage({
@@ -47,20 +57,35 @@
                 message: $("#message").val()
             });
         })
-        getMessages()
-    })
+        $('#message').val("");
+    }
     socket.on('message', addMessages)
 
     function addMessages(message) {
-        console.log('Addmsg'+ message.name +` ` +message.message);
+        console.log('Addmsg' + message.name + ` ` + message.message);
 
         $("#messages").prepend(`
       <h4> ${message.name} </h4>
       <p>  ${message.message} </p>`)
-    // $("#messages").append("append")
-    // $("p").append(" <b>Appended text</b>.");
+        // $("#messages").append("append")
+        // $("p").append(" <b>Appended text</b>.");
     }
-    
+
+
+    input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("send").click();
+                $('#message').val("");
+                
+            }
+        });
+
+    // $("#addLinks").keyup(function (event) {
+    //     if (event.keyCode == 13) {
+    //         $("#send").clickbtn();
+    //     }
+    // });
 
     function getMessages() {
         console.log('getmesseges');
@@ -77,4 +102,5 @@
     }
     console.log('hello');
 </script>
+
 </html>
