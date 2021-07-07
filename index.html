@@ -25,8 +25,7 @@
             <br> 
             <input id="name" class="form-control" placeholder="Name">
             <br>
-            <textarea id="message" class="form-control" placeholder="Your Message Here">
-        </textarea>
+            <input id="message" class="form-control" placeholder="Your Message Here"></input>
             <br>
             <button id="send" class="btn btn-success">Send</button>
         </div>
@@ -39,6 +38,7 @@
   var socket = io();
 </script>
 <script>
+
     $(() => {
         $("#send").click(() => {
             console.log('send click');
@@ -60,6 +60,7 @@
     // $("#messages").append("append")
     // $("p").append(" <b>Appended text</b>.");
     }
+    
 
     function getMessages() {
         console.log('getmesseges');
